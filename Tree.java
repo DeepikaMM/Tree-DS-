@@ -178,6 +178,16 @@ public class Tree {
     rightBoundary(root.left);
      
  }
+ public void dfsWrapper() {
+     DFS(root);
+ }
+ public void DFS(Node root) {
+      if(root==null)
+      return;
+      DFS(root.left);
+      System.out.println(root.data);
+      DFS(root.right);
+ }
  public static void main(String args[]) {
   Scanner in = new Scanner(System.in);
   int n = in .nextInt();
@@ -195,8 +205,9 @@ public class Tree {
   //t.horizontalView();
   //t.leftViewWrapper();
   //t.DiagonalWrapper();
-  t.Leaves();
-  t.GetleftBoundary();
-    t.GetrightBoundary();
+  //t.Leaves();
+  //t.GetleftBoundary();
+  //t.GetrightBoundary();
+  t.dfsWrapper();
  }
 }
