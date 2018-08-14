@@ -82,11 +82,13 @@ public class Tree {
  public int heightOfTree(Node root) {
      if(root==null)
      return 0;
+     if(root.left==null && root.right==null)
+     return 1;
      else {
-         int lheight = heightOfTree(root.left);
-         int rheight = heightOfTree(root.right);
+        // int lheight = heightOfTree(root.left);
+        // int rheight = heightOfTree(root.right);
 
-         return Math.max(lheight,rheight)+1;
+         return Math.max(heightOfTree(root.left),heightOfTree(root.right))+1;
      }
  }
  
@@ -132,6 +134,19 @@ public class Tree {
          DiagonalView(root.left,treemap,count+1);        
       
  }
+ public void Leaves() {
+     leaf(root);
+ }
+ public void leaf(Node root)
+ {
+     // as soon as it sees return it will go to next statement
+     if(root==null)
+     return;
+     if(root.left==null && root.right==null)
+     System.out.println(root.data);
+     leaf(root.left);
+     leaf(root.right);
+ }
  public static void main(String args[]) {
   Scanner in = new Scanner(System.in);
   int n = in .nextInt();
@@ -148,7 +163,8 @@ public class Tree {
   // t.VerticalViewWrapper();
   //t.horizontalView();
   //t.leftViewWrapper();
-  t.DiagonalWrapper();
+  //t.DiagonalWrapper();
+  t.Leaves();
 
  }
 }
