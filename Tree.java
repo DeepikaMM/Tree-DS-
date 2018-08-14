@@ -147,6 +147,37 @@ public class Tree {
      leaf(root.left);
      leaf(root.right);
  }
+ public void GetleftBoundary() {
+     GetLeft(root);
+ }
+ public void GetLeft(Node root) {
+     if(root == null)
+     return;
+     
+     if(root.left!=null || root.right!=null ) {
+        System.out.println(root.data);
+     }
+     
+     GetLeft(root.left);
+     if(root.left==null) {
+     
+     GetLeft(root.right);
+     }
+    
+ }
+ public void GetrightBoundary() {
+     rightBoundary(root);
+ }
+ public void rightBoundary(Node root) {
+     if(root == null)
+     return;
+     if(root.right!= null || root.left!=null) 
+         System.out.println(root.data);
+    rightBoundary(root.right);
+    if(root.right==null)
+    rightBoundary(root.left);
+     
+ }
  public static void main(String args[]) {
   Scanner in = new Scanner(System.in);
   int n = in .nextInt();
@@ -165,6 +196,7 @@ public class Tree {
   //t.leftViewWrapper();
   //t.DiagonalWrapper();
   t.Leaves();
-
+  t.GetleftBoundary();
+    t.GetrightBoundary();
  }
 }
