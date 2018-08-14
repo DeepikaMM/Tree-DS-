@@ -92,7 +92,7 @@ public class Tree {
      }
  }
  
- public void leftViewWrapper() {
+/* public void leftViewWrapper() {
      int height = heightOfTree(root);
      for(int i=1;i<=height;i++)
      LeftView(root,i);
@@ -104,6 +104,22 @@ public class Tree {
      System.out.println(root.data);
      else if(level>1)
      LeftView(root.left,level-1);
+ }*/
+ public void leftView() {
+     left(root,1);
+ }
+ static int max =0;
+ public void left(Node root, int level) {
+    
+     if (root == null) 
+     return ;
+     if(max < level)  {
+     System.out.println(root.data);
+     max = level;
+     }
+     left(root.left);
+     left(root.right);
+
  }
  public void DiagonalWrapper()
  {
@@ -208,6 +224,7 @@ public class Tree {
   //t.Leaves();
   //t.GetleftBoundary();
   //t.GetrightBoundary();
-  t.dfsWrapper();
+  //t.dfsWrapper();
+  t.leftView();
  }
 }
