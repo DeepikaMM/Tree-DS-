@@ -103,6 +103,35 @@ public class Tree {
      else if(level>1)
      LeftView(root.left,level-1);
  }
+ public void DiagonalWrapper()
+ {
+     TreeMap<Integer,Vector<Integer>> treemap = new TreeMap<Integer,Vector<Integer>>();
+     DiagonalView(root,treemap,0);
+     for(Map.Entry<Integer,Vector<Integer>> entry: treemap.entrySet())
+     {
+         System.out.println(entry.getValue());
+     }
+ }
+ public void DiagonalView(Node root,TreeMap<Integer,Vector<Integer>> treemap, int count) {
+     if(root==null)
+     return;
+     Vector<Integer> temp = treemap.get(count);
+     if(temp!=null) {
+        
+        temp.add(root.data);
+        treemap.put(count,temp);
+     }
+     else {
+        temp = new Vector<Integer>();
+        temp.add(root.data);
+        treemap.put(count,temp);
+     }
+    
+    
+         DiagonalView(root.right,treemap,count);
+         DiagonalView(root.left,treemap,count+1);        
+      
+ }
  public static void main(String args[]) {
   Scanner in = new Scanner(System.in);
   int n = in .nextInt();
@@ -118,7 +147,8 @@ public class Tree {
   //t.inorder();
   // t.VerticalViewWrapper();
   //t.horizontalView();
-  t.leftViewWrapper();
+  //t.leftViewWrapper();
+  t.DiagonalWrapper();
 
  }
 }
