@@ -5,6 +5,7 @@ public class Tree
         {
             Node left;
             Node right;
+            int data;
             public Node(int key)
             {
                 data = key;
@@ -13,47 +14,48 @@ public class Tree
             }
         }
         Node root;
-        public void createWrapper(int key)
-        {
-            root = create(root,key);
-        }
-        public static void inorder()
+      
+        public void inorder()
         {
             inorderWrapper(root);
         }
-        public void inorderWrapper(Node root)
+        int i =0;
+        public void  inorderWrapper(Node node)
         {
             if(node==null)
             return;
-            inorderWrapper(root.left);
-            System.out.println(root.data);
-            inorderWrapper(root.right);
+            i++;
+            inorderWrapper(node.left);
+            System.out.println("printing data " + i + node.data);
+            inorderWrapper(node.right);
         }
-        public static Node create(Node node, int key)
+        public  Node create(int key)
         {
+            Node n = new Node(key);
+            if(root == null)
+            root = n;
+           
+            if(key > root.data)
+            root.right = create(root.right , key);
+            else if(key<root.data)
+            root.left = create(root.left,key);
         
-            if(node == null)
-            {
-                Node n = new Node(key);
-            return root;
-            }
-            if(key > node.data)
-            node.right = create(node.right , key);
-            else if(key<node.data)
-            node.left = create(node.left,key);
-            else
-            return root;
+            return n;
+        }
+        public void verticalview(Node node)
+        {
+
         }
         public static void main(String args[])
         {
             Scanner in =new Scanner(System.in);
             int n = in.nextInt();
+            Tree t = new Tree ();
             int arr[] = new int[n];
             for(int i=0;i<n;i++)
             arr[i]  = in.nextInt();
-            for(int j=0;j<n;j++);
-            createWrapper(arr[j]);
-            inorder();
+            for(int j=0;j<n;j++)
+            t.createWrapper(arr[j]);
+            t.inorder();
         }
     }
-}
