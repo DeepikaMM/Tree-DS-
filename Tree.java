@@ -78,7 +78,25 @@ public class Tree
             System.out.println(node.data);
             inorderWrapper(node.right);
         }
-      
+      public  void horizontalView()
+      {
+          View(root);
+      }
+      public void View(Node root)
+      {
+          Queue<Node> q = new LinkedList<Node>();
+          q.add(root);
+          while(q.size()!=0)
+          {
+              Node temp = q.peek();
+              System.out.println(temp.data);
+              if(temp.left!=null)
+              q.add(temp.left);
+              if(temp.right!=null)
+              q.add(temp.right);
+              q.remove();
+          }
+      }
 
         public static void main(String args[])
         {
@@ -94,7 +112,8 @@ public class Tree
             }
             System.out.println("\n");
             //t.inorder();
-            t.VerticalViewWrapper();
+           // t.VerticalViewWrapper();
+           t.horizontalView();
            
         }
     }
