@@ -117,8 +117,8 @@ public class Tree {
      System.out.println(root.data);
      max = level;
      }
-     left(root.left);
-     left(root.right);
+     left(root.left,level+1);
+     left(root.right,level+1);
 
  }
  public void DiagonalWrapper()
@@ -204,6 +204,24 @@ public class Tree {
       System.out.println(root.data);
       DFS(root.right);
  }
+ public void inorderwithoutRecursion()
+ {
+     if(root==null)
+     return;
+     Stack<Node> stack = new Stack<Node>();
+     Node cur = root;
+     while(!stack.empty() || cur!=null)
+    {
+     while(cur!=null )
+     {
+         stack.push(cur);
+         cur=cur.left;
+     }
+     cur = stack.pop();
+     System.out.println(cur.data);
+     cur = cur.right;
+    }
+ }
  public static void main(String args[]) {
   Scanner in = new Scanner(System.in);
   int n = in .nextInt();
@@ -225,6 +243,7 @@ public class Tree {
   //t.GetleftBoundary();
   //t.GetrightBoundary();
   //t.dfsWrapper();
-  t.leftView();
+  //t.leftView();
+  t.inorderwithoutRecursion();
  }
 }
