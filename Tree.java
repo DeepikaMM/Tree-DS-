@@ -515,6 +515,41 @@ public class Tree {
      root.data = it.next();
      ConstructBst(root.right,it);
  }
+ public  void DeleteNode(int key)
+ {
+     root = DeleteNodeWrapper(root, key);
+ }
+ public Node DeleteNodeWrapper(Node root, int key)
+ {
+     if(root == null)
+     return root;
+     if(root.data > key)
+     root.left = DeleteNodeWrapper(root.left, key);
+     else if(root.data<key)
+     root.right = DeleteNodeWrapper(root.right, key);
+     else
+     {
+         if(root.left == null)
+         return root.right;
+         else if(root.right == null)
+         return root.left;
+         root.data = minValue(root.right);
+         root.right = DeleteNodeWrapper(root.right, root.data);
+         
+     }
+     return root;
+     
+ }
+ public int minValue(Node root)
+ {
+     int minv = root.data;
+     while(root.left!= null)
+     {
+         minv = root.left.data;
+         root = root.left;
+     }
+     return minv;
+ }
 
  public static void main(String args[]) {
 
@@ -564,6 +599,8 @@ public class Tree {
   //t.inorderwithoutRecursion();
   //t.BTtoBST();
   //t.inorder();
+  t.DeleteNode(9);
+  t.inorder();
 
  }
 
