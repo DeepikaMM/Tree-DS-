@@ -571,7 +571,31 @@ public class Tree {
      Replace_All(root.left,total);
      Replace_All(root.right,total);
  }
-
+ public void DistanceBetween2NodesWrapper(int a, int b){
+     System.out.println(DistanceBetween2Nodes(root,a,b));
+ }
+ public int DistanceBetween2Nodes(Node root, int a, int b){
+     if(root == null)
+        return 0;
+    if(root.data > a && root.data >  b)
+        return DistanceBetween2Nodes(root.left,a,b);
+    if(root.data <a && root.data <b)
+        return DistanceBetween2Nodes(root.right,a,b);
+    if((root.data < a && root.data>b ) )
+        return  DistanceFromRoot(root.left,a) + DistanceFromRoot(root.right,b);
+    return 0;
+ }
+public int DistanceFromRoot(Node root,int x){
+    
+    if(root.data == x)
+       return 0;
+    else if(root.data>x)
+        return 1+ DistanceFromRoot(root.left,x);
+   
+        return 1+DistanceFromRoot(root.right,x);
+    
+    
+}
  public static void main(String args[]) {
 
   Scanner in = new Scanner(System.in);
@@ -621,8 +645,9 @@ public class Tree {
   //t.BTtoBST();
   //t.inorder();
   //t.DeleteNode(9);
-  t.Replace_With_Sum_Of_Greater_nodes();
-  t.inorder();
+ // t.Replace_With_Sum_Of_Greater_nodes();
+ t.DistanceBetween2NodesWrapper(50,20);
+  //t.inorder();
 
  }
 
