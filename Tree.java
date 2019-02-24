@@ -550,6 +550,27 @@ public class Tree {
      }
      return minv;
  }
+ public int Sum_All(Node root){
+     
+     if(root == null)
+        return 0;
+     return root.data + Sum_All(root.left)+ Sum_All(root.right);
+ }
+ public void Replace_With_Sum_Of_Greater_nodes(){
+     int total = Sum_All(root);
+     Replace_All(root,total);
+ }
+ public void Replace_All(Node root, int total){
+     
+     if(root == null)
+        return;
+     
+     int leftSum = Sum_All(root.left);
+     root.data = total-root.data-leftSum;
+     
+     Replace_All(root.left,total);
+     Replace_All(root.right,total);
+ }
 
  public static void main(String args[]) {
 
@@ -599,7 +620,8 @@ public class Tree {
   //t.inorderwithoutRecursion();
   //t.BTtoBST();
   //t.inorder();
-  t.DeleteNode(9);
+  //t.DeleteNode(9);
+  t.Replace_With_Sum_Of_Greater_nodes();
   t.inorder();
 
  }
