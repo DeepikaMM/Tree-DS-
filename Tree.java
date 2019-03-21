@@ -19,59 +19,30 @@ public class Tree {
    data = key;
 
    left = right = null;
-
-
-
   }
-
  }
-
-
-
  public void createWrapper(int key) {
-
   root = create(root, key);
-
  }
-
-
-
- public Node create(Node node, int key) {
-
+public Node create(Node node, int key) {
   Node n = new Node(key);
-
   if (node == null)
-
    return n;
-
   if (key > node.data)
-
    node.right = create(node.right, key);
-
   else if (key < node.data)
-
    node.left = create(node.left, key);
-
   return node; // return the node not 'n'
-
  }
 
  public void VerticalViewWrapper() {
-
   TreeMap < Integer, Vector < Integer >> treeset = new TreeMap < Integer, Vector < Integer >> ();
 
   VerticalView(treeset, 0, root);
-
-
-
   for (Entry < Integer, Vector < Integer >> entry: treeset.entrySet()) {
-
    System.out.println(entry.getValue());
-
-  }
-
+   }
  }
-
  public void VerticalView(TreeMap < Integer, Vector < Integer >> treeset, int count, Node node) {
 
   if (node == null)
@@ -596,6 +567,44 @@ public int DistanceFromRoot(Node root,int x){
     
     
 }
+
+public  void BSTfromPreOrder(int [] pre){
+    Stack<Node> s= new Stack<Node>();
+    Node root = new Node(pre[0]);
+    s.push(root);
+    
+    for(int h=1;h<pre.length;h++){
+        Node temp = null;
+        while(!s.isEmpty() && pre[h]>s.peek().data){
+            temp = s.pop();
+        }
+        if(temp!=null){
+            temp.right =new Node(pre[h]);
+            s.push(temp.right);
+        }
+        else{
+            temp = s.peek();
+            temp.left =new Node(pre[h]);
+            s.push(temp.left);
+        }
+    }
+    
+    inorderTest(root);
+}
+public  void inorderTest(Node node) {
+
+  if (node == null)
+
+   return;
+
+  inorderTest(node.left);
+
+  System.out.println(node.data);
+
+  inorderTest(node.right);
+
+ }
+
  public static void main(String args[]) {
 
   Scanner in = new Scanner(System.in);
@@ -619,9 +628,9 @@ public int DistanceFromRoot(Node root,int x){
 
   }
 
-  System.out.println("\n");
+ 
 
-  t.inorder();
+  //t.inorder();
 
   // t.VerticalViewWrapper();
 
@@ -646,9 +655,9 @@ public int DistanceFromRoot(Node root,int x){
   //t.inorder();
   //t.DeleteNode(9);
  // t.Replace_With_Sum_Of_Greater_nodes();
- t.DistanceBetween2NodesWrapper(50,20);
+ //t.DistanceBetween2NodesWrapper(50,20);
   //t.inorder();
-
+t.BSTfromPreOrder(arr);
  }
 
 }
