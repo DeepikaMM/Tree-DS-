@@ -605,6 +605,18 @@ public  void inorderTest(Node node) {
 
  }
 
+ public void isBSTWrapper(){
+     System.out.println(isBST(root, Integer.MAX_VALUE, Integer.MIN_VALUE));
+ }
+
+ public boolean isBST(Node node, int max, int min){
+     if(node==null)
+        return true;
+    if(node.data<min || node.data >max)
+        return false;
+    return isBST(node.left, node.data-1, min) && isBST(node.right, max, node.data+1);
+ }
+
  public static void main(String args[]) {
 
   Scanner in = new Scanner(System.in);
@@ -628,7 +640,7 @@ public  void inorderTest(Node node) {
 
   }
 
- 
+
 
   //t.inorder();
 
@@ -657,7 +669,8 @@ public  void inorderTest(Node node) {
  // t.Replace_With_Sum_Of_Greater_nodes();
  //t.DistanceBetween2NodesWrapper(50,20);
   //t.inorder();
-t.BSTfromPreOrder(arr);
+//t.BSTfromPreOrder(arr);
+  t.isBSTWrapper();
  }
 
 }
